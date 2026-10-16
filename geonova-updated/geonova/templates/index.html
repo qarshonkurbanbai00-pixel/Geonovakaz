@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Интерактивті карта{% endblock %}
+{% block content %}
+<section class="page-heading"><div><p class="eyebrow">GEONOVA / EXPLORE</p><h1>Қазақстанды зерттеңіз</h1><p>Қабаттарды салыстырыңыз. Өзгерістерді бақылаңыз. Жаңа білім ашыңыз.</p></div><span class="status-pill">Қазақстан · GIS</span></section>
+<div class="map-layout">
+  <aside class="panel" id="layer-panel" aria-label="Карта құралдары">
+    <section class="panel-section"><div class="section-heading"><span class="step-badge">01</span><div><h2>Карта қабаттары</h2><p class="hint">Көрсетілетін деректерді таңдаңыз</p></div></div><div id="layer-toggles"></div></section>
+    <section class="panel-section"><div class="section-heading"><span class="step-badge">02</span><h2>Талдау кестесі</h2></div><div class="table-wrap" tabindex="0" role="region" aria-label="Халық саны кестесі"><table id="analysis-table"></table></div><div class="export-row"><button id="btn-export-png" class="btn" type="button">🖼️ PNG экспорт</button><button id="btn-export-pdf" class="btn btn-primary" type="button">📄 PDF есебі</button></div></section>
+  </aside>
+  <div class="workspace">
+    <section class="map-stage" aria-label="Интерактивті карта"><div class="stage-heading"><span>🗺️ Қазақстан картасы</span><span class="map-status" role="status" data-state="loading">Карта жүктелуде…</span></div><div class="map-canvas"><div id="map" role="region" aria-label="Қазақстан картасы"></div></div><div id="map-capture-hint" class="hint hidden" role="status">Экспорт дайындалуда…</div></section>
+    <section id="timeline" class="timeline" aria-label="Уақыт шкаласы"><div class="timeline-heading"><div><p class="eyebrow">УАҚЫТ ШКАЛАСЫ</p><h2>Өзгерістерді бақылау</h2></div><output id="tl-label" class="tl-label" for="tl-slider">2025</output></div><div class="timeline-controls"><button id="tl-play" class="btn tl-play" title="Ойнату" aria-label="Уақыт шкаласын ойнату" aria-pressed="false" type="button">▶</button><div class="slider-group"><input type="range" id="tl-slider" min="0" max="4" step="1" value="4" aria-label="Деректер жылы"><div id="tl-ticks" class="timeline-ticks" aria-hidden="true"></div></div></div></section>
+    <section id="ai-panel" class="ai-panel" aria-label="GeoNova AI көмекшісі"><div class="ai-header"><span class="ai-symbol" aria-hidden="true">✧</span><div><h2>GeoNova AI</h2><span class="ai-sub">Қазақша сөйлейтін зерттеу көмекшісі</span></div><span class="status-pill">Көмекші</span></div><div id="ai-log" class="ai-log" role="log" aria-live="polite" aria-label="Хабарламалар"></div><form id="ai-form" class="ai-form"><label class="sr-only" for="ai-input">Көмекшіге сұрақ</label><input id="ai-input" placeholder="Қазақстан туралы сұраңыз…" autocomplete="off"><button class="btn btn-primary" type="submit" aria-label="Хабарламаны жіберу">Жіберу ↗</button></form><div class="ai-quick"><button class="chip" data-q="Ақтау мен Астананың арақашықтығы" type="button">Ақтау–Астана?</button><button class="chip" data-q="Алматыдан Шымкентке бағыт көрсет" type="button">Алматы → Шымкент</button><button class="chip" data-q="Пайдалы қазбаларды көрсет" type="button">Қазбалар</button><button class="chip" data-q="Осы аймақ бойынша 5 сұрақ құрастыр" type="button">5 сұрақ ✍️</button></div></section>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+{% for module in ['layers', 'timeline', 'drawing', 'ai', 'export'] %}<script src="{{ url_for('static', filename='js/modules/' + module + '.js') }}"></script>{% endfor %}
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% endblock %}

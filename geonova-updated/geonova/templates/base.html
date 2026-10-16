@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="kk" data-theme="{{ theme or 'dark' }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#101923">
+<title>{{ app_name }} — {% block title %}Қазақстан ГИС{% endblock %}</title>
+<script>try { const theme = localStorage.getItem('geonova-theme'); if (theme === 'dark' || theme === 'light') document.documentElement.dataset.theme = theme; } catch (_) {}</script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Негізгі мазмұнға өту</a>
+<header class="topbar">
+  <a class="brand" href="{{ url_for('pages.index') }}" aria-label="GeoNova басты бет">
+    <span class="brand-mark" aria-hidden="true">◈</span>
+    <span class="brand-copy"><b>GeoNova<span class="brand-dot">.</span></b><span class="tagline">{{ app_tagline }}</span></span>
+  </a>
+  <nav class="tabs" aria-label="Негізгі навигация">
+    <a href="{{ url_for('pages.index') }}" class="{{ 'active' if page=='map' }}" {% if page=='map' %}aria-current="page"{% endif %}>🗺️ Карта</a>
+    <a href="{{ url_for('pages.geog') }}" class="{{ 'active' if page=='geog' }}" {% if page=='geog' %}aria-current="page"{% endif %}>🎯 Геог ойын</a>
+    <a href="{{ url_for('pages.quiz') }}" class="{{ 'active' if page=='quiz' }}" {% if page=='quiz' %}aria-current="page"{% endif %}>✍️ Тесттер</a>
+    <a href="{{ url_for('pages.teacher') }}" class="{{ 'active' if page=='teacher' }}" {% if page=='teacher' %}aria-current="page"{% endif %}>👩‍🏫 Мұғалім</a>
+  </nav>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Түсті режимді ауыстыру" title="Түсті режимді ауыстыру">☀</button>
+</header>
+<main id="main-content" tabindex="-1">{% block content %}{% endblock %}</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="{{ url_for('static', filename='js/modules/theme.js') }}"></script>
+<script src="{{ url_for('static', filename='js/modules/state.js') }}"></script>
+<script src="{{ url_for('static', filename='js/modules/mapCore.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

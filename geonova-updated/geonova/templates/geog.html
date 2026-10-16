@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Геог ойын{% endblock %}
+{% block content %}
+<section class="page-heading"><div><p class="eyebrow">GEONOVA / PLAY</p><h1>Қаланы тап!</h1><p>Картадан қалаларды тауып, географиялық біліміңізді сынаңыз.</p></div><span class="status-pill">10 қала · 1 ойын</span></section>
+<div class="geog-layout">
+  <aside class="panel"><section class="panel-section"><div class="section-heading"><span class="step-badge">01</span><h2>Ойынға қосылу</h2></div><div class="player-row"><label for="player-name">Ойыншы аты</label><input id="player-name" placeholder="Атыңыз…" maxlength="20"><button id="btn-start-game" class="btn btn-primary" type="button">Ойынды бастау ↗</button></div><div class="hud"><div class="hud-cell"><div class="hud-label">Ұпай</div><div id="hud-score" class="hud-value">0</div></div><div class="hud-cell"><div class="hud-label">Дөп</div><div id="hud-round" class="hud-value">0/10</div></div><div class="hud-cell"><div class="hud-label">Уақыт</div><div id="hud-time" class="hud-value">00:00</div></div></div><div id="game-target" class="game-target hidden" aria-live="polite"></div><div id="game-msg" class="game-msg" role="status"></div></section><section class="panel-section"><h2>🏆 Жоғары нәтижелер</h2><div class="table-wrap" tabindex="0" role="region" aria-label="Ойын нәтижелері"><table id="scoreboard" class="scoreboard"></table></div></section></aside>
+  <section class="map-stage"><div class="stage-heading"><span>📍 Қаланы картадан басыңыз</span><span class="map-status" role="status" data-state="loading">Карта жүктелуде…</span></div><div class="map-canvas"><div id="game-map" role="region" aria-label="Географиялық ойын картасы"></div></div></section>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/modules/game.js') }}"></script>{% endblock %}

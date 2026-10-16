@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Тесттер{% endblock %}
+{% block content %}
+<section class="page-heading"><div><p class="eyebrow">GEONOVA / LEARN</p><h1>Біліміңізді тексеріңіз</h1><p>Тест таңдаңыз, сұрақтарға жауап беріңіз және картадан зерттеңіз.</p></div><span class="status-pill">Интерактивті оқу</span></section>
+<div class="quiz-layout">
+  <aside class="panel"><section class="panel-section"><div class="section-heading"><span class="step-badge">01</span><h2>Тесттер жинағы</h2></div><p class="hint">GeoNova AI карта бетінен тест генерациялай алады, ал мұғалімдер өз тесттерін сақтайды.</p><div id="quiz-list" class="quiz-list"></div><a class="btn" href="{{ url_for('pages.teacher') }}">Жаңа тест құрастыру ↗</a></section></aside>
+  <div class="quiz-stage"><section class="quiz-card"><p class="eyebrow">СҰРАҚ / ЖАУАП</p><h2 id="qz-title">Тест таңдаңыз</h2><div class="hud"><div class="hud-cell"><div class="hud-label">Сұрақ</div><div id="qz-round" class="hud-value">–</div></div><div class="hud-cell"><div class="hud-label">Ұпай</div><div id="qz-score" class="hud-value">0</div></div></div><div id="qz-question" class="qz-question" aria-live="polite"></div><div id="qz-options" class="qz-options"></div><div id="qz-msg" class="game-msg" role="status"></div></section><section class="map-stage"><div class="stage-heading"><span>🗺️ Сұрақ картасы</span><span class="map-status" role="status" data-state="loading">Карта жүктелуде…</span></div><div id="quiz-map" class="quiz-map" role="region" aria-label="Тест картасы"></div></section></div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/modules/quiz.js') }}"></script>{% endblock %}
